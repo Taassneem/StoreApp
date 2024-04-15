@@ -10,7 +10,7 @@ class UpdateService {
       required String title,
       required String description,
       required String price,
-      required String image,
+      required String? image,
       required String category}) async {
     log('product id is $id');
     Map<String, dynamic> data = await Api().put(

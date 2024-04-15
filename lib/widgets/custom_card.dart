@@ -68,7 +68,7 @@ class CustomCard extends StatelessWidget {
             bottom: 80,
             right: 20,
             child: Image.network(
-              products.image,
+              products.image??'',
               height: 80,
               width: 80,
             ),

@@ -37,6 +37,7 @@ class HomeScreen extends StatelessWidget {
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 70,
                 ),
+                itemCount: products.length,
                 itemBuilder: (context, index) {
                   return CustomCard(
                     products: products[index],
