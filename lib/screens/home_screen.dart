@@ -5,7 +5,7 @@ import 'package:store_app/widgets/custom_card.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-
+  static String id = 'home_screen';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,10 +24,11 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.only(left: 16.0, right: 16, top: 70),
-        child: FutureBuilder<List<ProductModel>>(
+        child: FutureBuilder(
           future: GetAllProducts().getAllProducts(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
+              List<ProductModel> products = snapshot.data!;
               return GridView.builder(
                 clipBehavior: Clip.none,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -37,11 +38,17 @@ class HomeScreen extends StatelessWidget {
                   mainAxisSpacing: 70,
                 ),
                 itemBuilder: (context, index) {
-                  return const CustomCard();
+                  return CustomCard(
+                    products: products[index],
+                  );
                 },
               );
+            } else if (snapshot.hasError) {
+              throw ' ${snapshot.stackTrace}';
             } else {
-              return const Center(child: CircularProgressIndicator());
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
             }
           },
         ),

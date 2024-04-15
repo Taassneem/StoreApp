@@ -1,14 +1,16 @@
-import 'package:store_app/helper/api.dart';
+// ignore_for_file: missing_required_param
 
+import 'package:store_app/helper/api.dart';
 import '../models/prodect_model.dart';
 
 class AddProduct {
-  Future<ProductModel> addProduct(
-      {required String title,
-      required String description,
-      required String price,
-      required String image,
-      required String category}) async {
+  Future<ProductModel> addProduct({
+    required String title,
+    required String description,
+    required String price,
+    required String image,
+    required String category,
+  }) async {
     Map<String, dynamic> data = await Api().post(
       url: 'https://fakestoreapi.com/products',
       data: {
@@ -17,7 +19,7 @@ class AddProduct {
         'description': description,
         'image': image,
         'category': category
-      }, token: '',
+      },
     );
     return ProductModel.fromJson(data);
   }

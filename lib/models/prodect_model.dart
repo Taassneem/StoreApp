@@ -1,11 +1,11 @@
 class ProductModel {
-  final int id;
+  final dynamic id;
   final String title;
-  final double price;
+  final dynamic price;
   final String description;
   final String category;
   final String image;
-  final RatingModel rating;
+  final RatingModel? rating;
   const ProductModel({
     required this.id,
     required this.title,
@@ -24,22 +24,24 @@ class ProductModel {
       description: jsonData['description'],
       category: jsonData['category'],
       image: jsonData['image'],
-      rating: RatingModel.fromJson(jsonData['rating']),
+      rating: jsonData['rating'] == null
+            ? null
+            :RatingModel.fromJson(jsonData['rating'],),
     );
   }
 }
 
 class RatingModel {
-  final double rating;
+  final dynamic rate;
   final int count;
 
   const RatingModel({
-    required this.rating,
+    required this.rate,
     required this.count,
   });
   factory RatingModel.fromJson(jsonData) {
     return RatingModel(
-      rating: jsonData['rating'],
+      rate: jsonData['rate'],
       count: jsonData['count'],
     );
   }

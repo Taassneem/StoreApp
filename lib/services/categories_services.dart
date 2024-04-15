@@ -5,7 +5,10 @@ class CategoriesService {
   Future<List<ProductModel>> getCategories(
       {required String categoryName}) async {
     List<dynamic> data = await Api()
-        .get(url: 'https://fakestoreapi.com/products/category/$categoryName');
+        // ignore: missing_required_param
+        .get(
+      url: 'https://fakestoreapi.com/products/category/$categoryName',
+    );
 
     // List<dynamic> products = response.data;
 
